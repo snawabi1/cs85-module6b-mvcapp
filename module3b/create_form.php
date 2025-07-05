@@ -1,3 +1,9 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    echo "<h3>Thank you for your submission!</h3>";
+}
+?>
+
 <!-- HTML Contact Form -->
 <form action="" method="POST">
     <label for="fullname">Full Name:</label><br>
