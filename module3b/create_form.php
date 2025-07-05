@@ -1,6 +1,30 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    echo "<h3>Thank you for your submission!</h3>";
+    // Sanitize inputs
+    $name = htmlspecialchars(trim($_POST['fullname'] ?? ''));
+    $email = htmlspecialchars(trim($_POST['email'] ?? ''));
+    $topic = htmlspecialchars(trim($_POST['topic'] ?? ''));
+    $message = htmlspecialchars(trim($_POST['message'] ?? ''));
+
+    // Validate inputs
+    $errors = [];
+    if (empty($name)) $errors[] = "Name is required.";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Valid email is required.";
+    if (empty($topic)) $errors[] = "Topic is required.";
+    if (str_word_count($message) < 50 || str_word_count($message) > 150) {
+        $errors[] = "Message must be between 50 and 150 words.";
+    }
+
+    // Show thank-you or errors
+    if (empty($errors)) {
+        echo "<h3>Thank you, $name!</h3>";
+        echo "<p>We received your message about: \"$topic\"</p>";
+        echo "<p>We'll get back to you at $email.</p>";
+    } else {
+        foreach ($errors as $error) {
+            echo "<p style='color:red;'>$error</p>";
+        }
+    }
 }
 ?>
 
