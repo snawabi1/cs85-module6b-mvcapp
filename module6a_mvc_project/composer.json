@@ -1,0 +1,18 @@
+{
+    "name": "sophianawabi/module6a_mvc_project",
+    "description": "A simple MVC-based PHP app to track personal suggestions using PSR-4 autoloading.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+      "psr-4": {
+        "App\\": "src/"
+      }
+    },
+    "authors": [
+        {
+            "name": "Sophia Nawabi",
+            "email": "nawabi_sophia01@student.smc.edu"
+        }
+    ],
+    "require": {}
+}
